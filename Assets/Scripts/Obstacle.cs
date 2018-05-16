@@ -4,20 +4,38 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public float animationDelay = 0f;
+    private Animator anim;
 
-	private void OnTriggerEnter(Collider other)
-	{
-        if(other.CompareTag("Player")){
+    void Start()
+    {
+        anim = GetComponentInParent<Animator>();
+        if (anim != null)
+        {
+            Invoke("DelayAnimation", animationDelay);
+        }
+
+    }
+
+    void Update()
+    {
+        if (anim != null)
+        {
+            anim.SetBool("stopMovement", GameManager.instance.StopMovement);
+        }
+
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
             GameManager.instance.LoseLife();
         }
-	}
+    }
+
+    void DelayAnimation()
+    {
+        anim.Play("Peak_attack");
+    }
 }

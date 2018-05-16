@@ -21,7 +21,9 @@ public class EnemyMovement : MonoBehaviour {
         if(Landed()){
             NextPoint();
         }
-
+        if(GameManager.instance.StopMovement){
+            nav.Stop();
+        }
         UpdateDestinationAgent(waypoints[currentTargetIndex]);
 	}
 

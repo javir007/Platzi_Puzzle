@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -9,12 +10,13 @@ public class GameManager : MonoBehaviour {
     public GameObject player;
     public Transform spawnPoint;
 
-    private bool playerMovement = true;
+    public bool playerMovement = true;
 
     private int points = 0;
     private int itemAmnt = 0;
     private int playerLifes = 3;
     private bool stopMovement = false;
+    private int itemsPerLevel = 3;
 
 
 	private void Awake()
@@ -26,6 +28,10 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
+    public bool StopMovement{
+        get { return stopMovement; }
+    }
+
 	// Use this for initialization
 	void Start () {
         SpawnPlayer();
@@ -33,7 +39,9 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if(itemsPerLevel == itemAmnt){
+            EnablePortal(true);
+        }
 	}
 
     public void PickItem(){
@@ -49,6 +57,7 @@ public class GameManager : MonoBehaviour {
             Invoke("SpawnPlayer", 1f);
         }else{
             playerLifes = 0;
+            FinishGame();
         }
 
     }
@@ -71,6 +80,24 @@ public class GameManager : MonoBehaviour {
     public void KillPlayer(){
         PlayerMove(false);
         player.SetActive(false);
+    }
+
+    public void LevelCompleted(){
+        PlayerMove(false);
+        Invoke("LoadScene", 5f);
+    }
+
+    public void PlayAgain(){
+        LoadScene();
+    }
+
+    public void LoadScene(){
+        SceneManager.LoadScene(0);
+    }
+
+    public void FinishGame(){
+        KillPlayer();
+        stopMovement = true;
     }
 
 

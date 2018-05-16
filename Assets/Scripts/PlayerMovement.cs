@@ -37,7 +37,10 @@ public class PlayerMovement : MonoBehaviour {
 
         movement = movement.normalized * speed * Time.deltaTime;
 
-        rb.MovePosition(transform.position + movement);
+        if (GameManager.instance.playerMovement)
+        {
+            rb.MovePosition(transform.position + movement);
+        }
     }
 
     void Turn(float v,float h){
