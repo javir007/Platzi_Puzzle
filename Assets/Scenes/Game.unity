@@ -11200,6 +11200,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ad349cc1d3a4bd188e68b53160d6f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finalPortal: {fileID: 2133490111}
+  player: {fileID: 299237129}
+  spawnPoint: {fileID: 1089171885}
 --- !u!4 &897030095
 Transform:
   m_ObjectHideFlags: 0
