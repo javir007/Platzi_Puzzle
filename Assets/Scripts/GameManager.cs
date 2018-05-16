@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour {
     private int playerLifes = 3;
     private bool stopMovement = false;
     private int itemsPerLevel = 3;
+    private int highScore;
+
 
 
 	private void Awake()
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         SpawnPlayer();
+        highScore = PlayerPrefs.GetInt("Score", 0);
 	}
 	
 	// Update is called once per frame
@@ -84,6 +87,11 @@ public class GameManager : MonoBehaviour {
 
     public void LevelCompleted(){
         PlayerMove(false);
+        if(points>highScore){
+            PlayerPrefs.SetInt("Score", points);
+            highScore = points;
+        }
+        print("La puntuacion maxima es: " + highScore);
         Invoke("LoadScene", 5f);
     }
 
