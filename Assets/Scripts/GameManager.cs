@@ -48,10 +48,11 @@ public class GameManager : MonoBehaviour {
 	}
 
     public void PickItem(){
-        points += 10;
         itemAmnt++;
 
     }
+
+ 
 
     public void LoseLife(){
         if(playerLifes > 1){
