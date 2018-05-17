@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour {
 
     public bool playerMovement = true;
 
+
+    public AudioClip[] collectableClips;
+
     private int points = 0;
     private int itemAmnt = 0;
     private int playerLifes = 3;
@@ -19,7 +22,7 @@ public class GameManager : MonoBehaviour {
     private int itemsPerLevel = 3;
     private int highScore;
 
-
+    private AudioSource sound;
 
 	private void Awake()
 	{
@@ -38,6 +41,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {
         SpawnPlayer();
         highScore = PlayerPrefs.GetInt("Score", 0);
+        sound = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -48,11 +52,16 @@ public class GameManager : MonoBehaviour {
 	}
 
     public void PickItem(){
+        points += 10;
         itemAmnt++;
 
     }
 
- 
+    public void PickCoin(){
+        points += 5;
+        sound.PlayOneShot(collectableClips[0]);
+    }
+
 
     public void LoseLife(){
         if(playerLifes > 1){

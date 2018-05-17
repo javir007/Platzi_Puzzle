@@ -11648,6 +11648,7 @@ MonoBehaviour:
   player: {fileID: 299237129}
   spawnPoint: {fileID: 1089171885}
   playerMovement: 1
+  collectableClips: []
 --- !u!4 &897030095
 Transform:
   m_ObjectHideFlags: 0
@@ -15482,7 +15483,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1089221620671288, guid: 35d81bd2a772d475e86e91d7a55c1103, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35d81bd2a772d475e86e91d7a55c1103, type: 2}
